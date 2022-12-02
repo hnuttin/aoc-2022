@@ -1,17 +1,9 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
-
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    val calByElf = testInput.fold(mutableListOf(mutableListOf<Int>())) {
+        acc, cal ->  if (cal.isBlank()) acc.add(mutableListOf()) else acc.last().add(cal.toInt())
+        acc
+    }
+    println(calByElf.map { cals -> cals.sum() }.max());
+    println(calByElf.map { cals -> cals.sum() }.sortedDescending().take(3).sum())
 }
